@@ -4,4 +4,4 @@ for first_digit in range(10):
         if first_digit == 8 and second_digit == 9:
             print("{}{}".format(first_digit, second_digit))
         else:
-            print("{}{}".format(first_digit, second_digit), end=',')
+            print("{}{}".format(first_digit, second_digit), end=', ')

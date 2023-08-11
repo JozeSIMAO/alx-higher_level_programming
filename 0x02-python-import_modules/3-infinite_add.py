@@ -8,4 +8,4 @@ if __name__ = "__main__":
     while counter < num_args:
         sum = sum + int(sys.argv[counter])
         counter += 1
-    print(f"{sum}")
+    print("{}".format(total))

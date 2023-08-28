@@ -6,7 +6,7 @@ def list_division(my_list_1, my_list_2, list_length):
         for elem in range(list_length):
             try:
                 val1 = my_list_1[elem]
-                val2 =my_list_2[elem]
+                val2 = my_list_2[elem]
 
                 if not (isinstance(val1, (int, float))
                         and isinstance(val2, (int, float))):

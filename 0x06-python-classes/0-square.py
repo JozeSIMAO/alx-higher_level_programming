@@ -1,13 +1,5 @@
 #!/usr/bin/python3
+"""Define a class"""
 class Square:
-    """
-    class - represents a square
-
-    Attributes:
-        None
-
-    Methods:
-        None
-    """
-
+    """A class that defines a square"""
     pass

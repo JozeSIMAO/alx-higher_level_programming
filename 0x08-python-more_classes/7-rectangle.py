@@ -55,7 +55,7 @@ class Rectangle:
         if self.width == 0 or self.height == 0:
             return ("")
         rectangle = "#"
-        for i in range (self.__height):
+        for i in range(self.__height):
             rectangle += str(self.print_symbol) * self.__width
             if i < self.__height - 1:
                 rectangle += "\n"

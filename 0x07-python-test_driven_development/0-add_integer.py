@@ -5,6 +5,8 @@
 
 def add_integer(a, b=98):
     """Return the integer addition of a and b.
+
+
     Args:
         a: 1st integer
         b: 2nd integer

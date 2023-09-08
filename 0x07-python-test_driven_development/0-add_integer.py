@@ -12,4 +12,4 @@ def add_integer(a, b=98):
     b = int(b)
 
     answer = a + b
-    return answer
+    return (answer)

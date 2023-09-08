@@ -1,31 +1,53 @@
 #!/usr/bin/python3
-"""defines a function that prints a text with 2 new lines"""
+# text_indentation.py
+"""defines a text indentation function
 
+This module provides a function, text_indentation, which takes a text string as input and
+prints the text with two new lines after each '.', '?', and ':' characters.
+
+Example:
+    text = "Hello. This is a sample text: It has multiple sentences. Is it working?"
+    text_indentation(text)
+    
+    Output:
+    Hello.
+    
+    This is a sample text:
+    
+    It has multiple sentences.
+    
+    Is it working?
+
+Args:
+    text (str): The input text to be formatted.
+
+Raises:
+    TypeError: If text is not a string.
+"""
 
 def text_indentation(text):
-    """prints a text with 2 new lines after each of these characters.
+    """Print text with two new lines after each '.', '?', and ':'.
 
-        Args:
-            text: must be a string, otherwise raise  a TypeError
-            exception with the message text "must be a string"
-
-        raises:
-            TypeError: exception
-
-        return: a string
+    Args:
+        text: text to print
+    Raises:
+        TypeError: If text is not a string
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    lines = []
-    for char in text:
-        if char in ['.', '?', ':']:
-            lines.append(char + '\n\n')
-        else:
-            if not lines or lines[-1].endswith('\n'):
-                lines.append(char)
-            else:
-                lines[-1] += char
+    char = 0
+    while char < len(text) and text[char] == ' ':
+        char += 1
 
-    for line in lines:
-        print(line, end='')
+    while char < len(text):
+        print(text[char], end="")
+        if text[char] == "\n" or text[char] in ".?:":
+            if text[char] in ".?:":
+                print("\n")
+            char += 1
+            while char < len(text) and text[char] == ' ':
+                char += 1
+            continue
+        char += 1
+

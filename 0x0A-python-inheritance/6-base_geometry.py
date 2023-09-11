@@ -7,4 +7,4 @@ class BaseGeometry:
 
     def area(self):
         """not impimented instance"""
-        raise Exception("area() is not implimented")
+        raise Exception("area() is not implemented")

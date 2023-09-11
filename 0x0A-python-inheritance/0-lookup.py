@@ -10,6 +10,4 @@ def lookup(obj):
     """
     attri_methods = dir(obj)
 
-    methods = [item for item in attri_methods if callable(getattr(obj, item))]
-
-    return methods
+    return attri_methods

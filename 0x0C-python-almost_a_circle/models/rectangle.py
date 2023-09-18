@@ -14,16 +14,16 @@ class Rectangle(Base):
             x (int): x coordinate of rectangle
             y (int): y coordinate of rectangle
         raises:
-            TypeError: if width/height is != int
+            TypeError: if width/height is not an int
             ValueError: if width/height <= 0
-            TypeError: if x/y is != int
+            TypeError: if x/y is not an int
             ValueError: if x/y < 0
         """
+        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
         self.y = y
-        super().__init__(id)
 
     @property
     def width(self):
@@ -32,7 +32,7 @@ class Rectangle(Base):
 
     @width.setter
     def width(self, value):
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("Width must be an integer")
         if value <= 0:
             raise ValueError("Width must be > 0")
@@ -45,8 +45,8 @@ class Rectangle(Base):
 
     @height.setter
     def height(self, value):
-        if type(value) != int:
-            raise TypeError("Height must be a integer")
+        if not isinstance(value, int):
+            raise TypeError("Height must be an integer")
         if value <= 0:
             raise ValueError("Height must be > 0")
         self.__height = value
@@ -58,7 +58,7 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, value):
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("x must be an integer")
         if value < 0:
             raise ValueError("x must be >= 0")
@@ -71,7 +71,7 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, value):
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
@@ -90,29 +90,44 @@ class Rectangle(Base):
 
     def __str__(self):
         """returns the str and print representation of rectangle"""
-        return (f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.__width}/{self.__height}")
+        return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height))
 
     def update(self, *args, **kwargs):
-        """updates the class Rectangle, assigns each argument to each attribute"""
-        if args:
-            if len(args) >= 1:
-                self.id = args[0]
-            if len(args) >= 2:
-                self.width = args[1]
-            if len(args) >= 3:
-                self.height = args[2]
-            if len(args) >= 4:
-                self.x = args[3]
-            if len(args) >= 5:
-                self.y = args[4]
-        else:
-            if 'id' in kwargs:
-                self.id = kwargs['id']
-            if 'width' in kwargs:
-                self.id = kwargs['width']
-            if 'height' in kwargs:
-                self.height = kwargs['height']
-            if 'x' in kwargs:
-                self.x = kwargs['x']
-            if 'y' in kwargs:
-                self.y = kwargs['y']
+        """updates the class Rectangle, assigns arguments-each attribute
+
+        Args:
+            args (int): new attribute values
+            kwargs (dict): new key/value pairs of attributes"""
+        if args and len(args) != 0:
+            a = 0
+            for arg in args:
+                if a == 0:
+                    if arg is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = arg
+                elif a == 1:
+                    self.width = arg
+                elif a == 2:
+                    self.height = arg
+                elif a == 3:
+                    self.x = arg
+                elif a == 4:
+                    self.y = arg
+                a += 1
+
+        elif kwargs and len(kwargs) != 0:
+            for k, v in kwargs.items():
+                if k == "id":
+                    if v is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = v
+                elif k == "width":
+                    self.width = v
+                elif k == "height":
+                    self.height = v
+                elif k == "x":
+                    self.x = v
+                elif k == "y":
+                    self.y = v

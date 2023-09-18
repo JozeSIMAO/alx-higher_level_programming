@@ -1,45 +1,45 @@
 #!/usr/bin/python3
-"""unittest for the Rectangle class"""
-
+# test_rectangle.py
 
 import unittest
+from models.base import Base
 from models.rectangle import Rectangle
 
 class TestRectangle(unittest.TestCase):
+    def setUp(self):
+        Base._Base__nb_objects = 0
 
-    def test_constructor(self):
-        r = Rectangle(4, 5, 1, 2, 42)
-        self.assertEqual(r.width, 4)
-        self.assertEqual(r.height, 5)
-        self.assertEqual(r.x, 1)
-        self.assertEqual(r.y, 2)
-        self.assertEqual(r.id, 42)
+    def test_rectangle_is_base(self):
+        self.assertIsInstance(Rectangle(10, 2), Base)
 
-    def test_area(self):
-        r = Rectangle(4, 5)
-        self.assertEqual(r.area(), 20)
+    def test_no_args(self):
+        with self.assertRaises(TypeError):
+            Rectangle()
 
-    def test_display(self):
-        r = Rectangle(3, 2)
-        expected_output = "###\n###\n"
-        with unittest.mock.patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
-            r.display()
-            self.assertEqual(mock_stdout.getvalue(), expected_output)
+    def test_one_arg(self):
+        with self.assertRaises(TypeError):
+            Rectangle(1)
 
-    def test_str(self):
-        r = Rectangle(4, 5, 1, 2, 42)
-        expected_str = "[Rectangle] (42) 1/2 - 4/5"
-        self.assertEqual(str(r), expected_str)
+    def test_two_args(self):
+        r1 = Rectangle(10, 2)
+        r2 = Rectangle(2, 10)
+        self.assertEqual(r1.id, r2.id - 1)
 
-    def test_update(self):
-        r = Rectangle(4, 5, 1, 2, 42)
-        r.update(1, 6, 7, 8, 9)
-        self.assertEqual(r.id, 1)
-        self.assertEqual(r.width, 6)
-        self.assertEqual(r.height, 7)
-        self.assertEqual(r.x, 8)
-        self.assertEqual(r.y, 9)
+    def test_three_args(self):
+        r1 = Rectangle(2, 2, 4)
+        r2 = Rectangle(4, 4, 2)
+        self.assertEqual(r1.id, r2.id - 1)
 
-if __name__ == '__main__':
+    def test_four_args(self):
+        r1 = Rectangle(1, 2, 3, 4)
+        r2 = Rectangle(4, 3, 2, 1)
+        self.assertEqual(r1.id, r2.id - 1)
+
+    def test_five_args(self):
+        self.assertEqual(7, Rectangle(10, 2, 0, 0, 7).id)
+
+    def tearDown(self):
+        Base._Base__nb_objects = 0
+
+if __name__ == "__main__":
     unittest.main()
-

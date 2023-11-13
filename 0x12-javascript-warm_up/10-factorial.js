@@ -3,7 +3,7 @@
 const num = Number(process.argv[2]);
 
 function factorial (num) {
-  if (num === undefined || num === 0) {
+  if (isNaN(num) || num === 0) {
     return 1;
   }
   return num * factorial(num - 1);

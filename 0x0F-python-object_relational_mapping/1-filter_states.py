@@ -14,7 +14,3 @@ if __name__ == "__main__":
         print(row)
     cursor.close()
     db.close()
-    for row in rows:
-        print(row)
-    cursor.close()
-    db.close()

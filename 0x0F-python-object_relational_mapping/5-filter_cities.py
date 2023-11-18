@@ -14,6 +14,6 @@ if __name__ == "__main__":
                    WHERE states.name=%s""", (sys.argv[4],))
     rows = cursor.fetchall()
     temp = list(row[0] for row in rows)
-    print(temp, sep=", ")
+    print(*temp, sep=", ")
     cursor.close()
     db.close()

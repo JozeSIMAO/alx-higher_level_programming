@@ -10,11 +10,11 @@ if __name__ == "__main__":
     url = sys.argv[1]
     email = sys.argv[2]
     data = {'email': email}
-    
+
     try:
         response = requests.post(url, data=data)
-        response.raise_for_status()  # Raise an HTTPError for bad responses (4xx or 5xx)
-        
+        response.raise_for_status()
+
         content = response.text
         print(f"Your email is: {content}")
     except requests.RequestException as e:
